@@ -17,9 +17,9 @@
 </script>
 
 <div class="flex flex-col md:flex-row-reverse md:justify-between md:items-center">
-    <img class="h-52 w-52 mb-4 mx-auto md:items-center md:ml-6 md:mb-0 lg:h-60 lg:w-60 xl:h-72 xl:w-72" src="/kryptozada-icon.png" alt="Kryptozada Logo" aria-hidden="true">
+    <img class="h-44 w-44 mb-4 mx-auto md:items-center md:ml-6 md:mb-0 md:h-52 md:w-52 lg:h-60 lg:w-60 xl:h-72 xl:w-72" src="/kryptozada-icon.png" alt="Kryptozada Logo" aria-hidden="true">
 
-    <h1 class="text-5xl font-black xl:text-8xl lg:text-6xl">
+    <h1 class="text-4xl font-black md:text-5xl lg:text-6xl xl:text-8xl">
         Welcome to <span class="bg-primary text-white">Kryptozada</span>, a place about cryptocurrency's infos
     </h1>
 </div>
