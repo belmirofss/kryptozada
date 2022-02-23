@@ -17,11 +17,11 @@
 </script>
 
 <div class="flex justify-between items-center">
-    <h1 class="xl:text-8xl lg:text-6xl md:text-5xl font-black">
+    <h1 class="xl:text-8xl lg:text-6xl sm:text-5xl font-black">
         Welcome to <span class="bg-primary text-white">Kryptozada</span>, a place about cryptocurrency's infos
     </h1>
 
-    <img class="xl:h-72 lg:h-60 md:h-52 ml-6" src="/kryptozada-icon.png" alt="Kryptozada Logo" aria-hidden="true">
+    <img class="xl:h-72 lg:h-60 md:h-52 sm:h-36 ml-6" src="/kryptozada-icon.png" alt="Kryptozada Logo" aria-hidden="true">
 </div>
 
 <hr class="my-12" />
@@ -39,7 +39,7 @@
 
 <h6 class="text-3xl font-black">Infos about market</h6>
 <div class="mt-4">
-    <div class="flex lg:flex-row md:flex-col lg:space-x-4 md:space-x-0 md:space-y-4">
+    <div class="flex lg:flex-row lg:items-center sm:flex-col lg:space-x-4 sm:space-x-0 sm:space-y-4">
         <CardText>
             The total cryptocurrency <span class="font-bold">market capitalization</span> is <span class="bg-primary text-white p-1">{formatCurrency(globalData.total_mcap)}</span>
         </CardText>
@@ -53,7 +53,7 @@
         </CardText>
     </div>
         
-    <div class="flex lg:flex-row md:flex-col lg:space-x-4 md:space-x-0 md:space-y-4 mt-4">
+    <div class="flex lg:flex-row lg:items-center sm:flex-col lg:space-x-4 sm:space-x-0 sm:space-y-4 mt-4">
         <CardText>
             <span class="font-bold">Bitcoin's</span> dominance is <span class="bg-primary text-white p-1">{globalData.btc_d}%</span>
         </CardText>

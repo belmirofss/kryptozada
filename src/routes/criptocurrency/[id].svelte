@@ -62,7 +62,7 @@ import { formatCurrency, formatNumber } from "$lib/utils";
         </table>    
     </div>
 
-    <div class="bg-white rounded-lg drop-shadow-md w-full md:mt-0 sm:mt-4">
+    <div class="bg-white rounded-lg drop-shadow-md w-full lg:mt-0 sm:mt-4">
         <table class="table-auto w-full">
             <tbody>
                 <tr class="h-16 bg-gray-50">
