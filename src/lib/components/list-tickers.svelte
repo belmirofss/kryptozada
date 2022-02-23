@@ -2,7 +2,7 @@
     import { coinlore_img } from "$lib/constants";
     import { formatCurrency, formatNumber } from "$lib/utils";
     import { onMount } from "svelte";
-    import orderBy from 'lodash/orderBy'
+    import orderBy from 'lodash/orderBy.js'
     import ListTickersToolbar from "./list-tickers-toolbar.svelte";
     import { splashScreenIsActive } from "$lib/store";
     import { goto } from "$app/navigation";
