@@ -31,14 +31,14 @@
     }
 </script>
 
-<div class="flex justify-between md:flex-col">
+<div class="flex lg:flex-row justify-between md:flex-col">
     <div class="flex flex-col">
         <label for="search-input" class="text-sm font-medium">Search for</label>
         <input id="search-input" class="py-2 px-2 mt-1 border-2 border-gray-400 rounded-lg focus:border-primary hover:border-black outline-0" bind:value={searchText} on:input={onChanges} placeholder="Type the name">
     </div>
 
-    <div class="flex md:flex-col">
-        <div class="select-theme flex flex-col mr-2 w-64 md:w-full md:mt-2">
+    <div class="flex lg:flex-row md:flex-col">
+        <div class="select-theme flex flex-col mr-2 lg:w-64 md:w-full md:mt-2">
             <label for="select-sorted-by" class="text-sm font-medium">Order by</label>
             <Select id="select-sorted-by" items={orderByOptions} value={{ value: orderedBy }} on:select={event => {
                 orderedBy = event.detail.value;
@@ -46,7 +46,7 @@
             }} placeholder="Select the order by" isClearable={false} isSearchable={false}></Select>
         </div>
         
-        <div class="select-theme flex flex-col w-52 md:mt-2 md:w-full">
+        <div class="select-theme flex flex-col lg:w-52 md:mt-2 md:w-full">
             <label for="select-sorted-type" class="text-sm font-medium">Order type</label>
             <Select id="select-sorted-type" items={orderTypeOptions} value={{ value: orderedType }} on:select={event => {
                 orderedType = event.detail.value;

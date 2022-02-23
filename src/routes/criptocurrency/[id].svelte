@@ -20,7 +20,7 @@ import { formatCurrency, formatNumber } from "$lib/utils";
     ${ticker.symbol}
 </h2>
 
-<div class="mt-4 flex justify-between sm:flex-col">
+<div class="mt-4 flex md:flex-row justify-between sm:flex-col">
     <div class="bg-white rounded-lg drop-shadow-md w-full mr-4">
         <table class="table-auto w-full mr-4">
             <tbody>
@@ -62,7 +62,7 @@ import { formatCurrency, formatNumber } from "$lib/utils";
         </table>    
     </div>
 
-    <div class="bg-white rounded-lg drop-shadow-md w-full sm:mt-4">
+    <div class="bg-white rounded-lg drop-shadow-md w-full md:mt-0 sm:mt-4">
         <table class="table-auto w-full">
             <tbody>
                 <tr class="h-16 bg-gray-50">
