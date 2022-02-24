@@ -4,12 +4,9 @@
 
     const dispatch = createEventDispatcher();
 
-    let orderedBy = 'market_cap_usd';
-    let orderedType = 'desc';
-    let searchText = '';
-
-    const orderByOptions = [
+    const orderedByOptions = [
         { value: 'name', label: 'Name'},
+        { value: 'symbol', label: 'Symbol'},
         { value: 'price_usd', label: 'Price'},
         { value: 'market_cap_usd', label: 'Market cap'},
         { value: 'percent_change_1h', label: '1h %'},
@@ -17,15 +14,19 @@
         { value: 'percent_change_7d', label: '7d %'},
     ];
 
-    const orderTypeOptions = [
+    const orderedTypeOptions = [
         { value: 'asc', label: 'Ascending' },
         { value: 'desc', label: 'Descending' },
     ];
 
+    let orderedBySelected = orderedByOptions[3];
+    let orderedTypeSelected = orderedTypeOptions[1];
+    let searchText = '';
+
     const onChanges = () => {
         dispatch('searchOrOrderEvent', {
-            orderedBy,
-            orderedType,
+            orderedBy: orderedBySelected.value,
+            orderedType: orderedTypeSelected.value,
             searchText
         });
     }
@@ -40,16 +41,16 @@
     <div class="flex flex-col lg:flex-row">
         <div class="select-theme flex flex-col w-full mt-2 lg:mr-2 lg:w-64">
             <label for="select-sorted-by" class="text-sm font-medium">Order by</label>
-            <Select id="select-sorted-by" items={orderByOptions} value={{ value: orderedBy }} on:select={event => {
-                orderedBy = event.detail.value;
+            <Select id="select-sorted-by" items={orderedByOptions} value={orderedBySelected} on:select={event => {
+                orderedBySelected = event.detail;
                 onChanges();
             }} placeholder="Select the order by" isClearable={false} isSearchable={false}></Select>
         </div>
         
         <div class="select-theme flex flex-col w-full mt-2 lg:w-52">
             <label for="select-sorted-type" class="text-sm font-medium">Order type</label>
-            <Select id="select-sorted-type" items={orderTypeOptions} value={{ value: orderedType }} on:select={event => {
-                orderedType = event.detail.value;
+            <Select id="select-sorted-type" items={orderedTypeOptions} value={orderedTypeSelected} on:select={event => {
+                orderedTypeSelected = event.detail;
                 onChanges();
             }} placeholder="Select the order type" isClearable={false} isSearchable={false}></Select>
         </div>

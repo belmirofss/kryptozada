@@ -56,6 +56,9 @@
                 <th class="sticky top-0 z-10 bg-white text-left">
                     Name
                 </th>
+                <th class="sticky top-0 z-10 bg-white text-left">
+                    Symbol
+                </th>
                 <th class="sticky top-0 z-10 bg-white text-right">
                     Price
                 </th>
@@ -82,8 +85,11 @@
                     <td>
                         <img class="h-8 mr-2 inline" src="{coinlore_img}/{ticker.nameid}.png" alt="{ticker.name} Logo" aria-hidden="true">
                         <span class="font-black">
-                            {ticker.name} <span class="font-bold text-gray-400">${ticker.symbol}</span>
+                            {ticker.name}
                         </span>
+                    </td>
+                    <td class="font-bold text-gray-400">
+                        ${ticker.symbol}
                     </td>
                     <td class="font-bold text-right">
                         {formatCurrency(ticker.price_usd)}
