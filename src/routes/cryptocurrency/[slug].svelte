@@ -1,7 +1,10 @@
 <script>
 	import ChangePill from '$lib/components/change-pill.svelte';
 	import CoinIcon from '$lib/components/coin-icon.svelte';
+	import Seo from '$lib/components/seo.svelte';
+	import { site_url } from '$lib/constants';
 	import {
+		coinPath,
 		describeChange,
 		formatCompactCurrency,
 		formatCompactNumber,
@@ -50,6 +53,27 @@
 		}
 	];
 
+	$: seoDescription =
+		`${ticker.name} (${ticker.symbol}) is trading at ${formatPrice(ticker.price_usd)}, ` +
+		`${describeChange(ticker.percent_change_24h)} in the last 24 hours. ` +
+		`Ranked #${ticker.rank} by market cap (${formatCompactCurrency(ticker.market_cap_usd)}), ` +
+		`with ${formatCompactCurrency(ticker.volume24)} traded today. ` +
+		`See its supply, momentum and the exchanges where ${ticker.symbol} trades.`;
+
+	$: breadcrumbs = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Markets', item: `${site_url}/` },
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: ticker.name,
+				item: `${site_url}${coinPath(ticker)}`
+			}
+		]
+	};
+
 	$: volumeRatio = +ticker.market_cap_usd ? (+ticker.volume24 / +ticker.market_cap_usd) * 100 : 0;
 	$: stats = [
 		{ label: 'Market cap', value: formatCompactCurrency(ticker.market_cap_usd), highlight: true },
@@ -67,9 +91,11 @@
 	];
 </script>
 
-<svelte:head>
-	<title>Kryptozada | {ticker.name} ({ticker.symbol})</title>
-</svelte:head>
+<Seo
+	title="{ticker.name} ({ticker.symbol}) price today, market cap and stats | Kryptozada"
+	description={seoDescription}
+	jsonLd={[breadcrumbs]}
+/>
 
 <div class="border-b-[3px] border-ink">
 	<nav
@@ -244,7 +270,7 @@
 		>
 			{#if neighbours.previous}
 				<a
-					href="/criptocurrency/{neighbours.previous.id}"
+					href={coinPath(neighbours.previous)}
 					class="flex min-w-0 flex-col gap-0.5 border-[3px] border-ink p-3.5 shadow-brutal-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal lg:flex-row lg:items-center lg:gap-5 lg:px-7 lg:py-6 lg:shadow-[8px_8px_0_#111111]"
 				>
 					<span class="hidden text-[40px] font-extrabold lg:inline" aria-hidden="true">←</span>
@@ -263,7 +289,7 @@
 			{/if}
 			{#if neighbours.next}
 				<a
-					href="/criptocurrency/{neighbours.next.id}"
+					href={coinPath(neighbours.next)}
 					class="flex min-w-0 flex-col items-end gap-0.5 border-[3px] border-ink bg-primary p-3.5 shadow-brutal-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal lg:flex-row lg:items-center lg:gap-5 lg:px-7 lg:py-6 lg:shadow-[8px_8px_0_#111111]"
 				>
 					<span class="hidden font-mono text-xl lg:inline"

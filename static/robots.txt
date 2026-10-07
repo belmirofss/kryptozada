@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kryptozada.vercel.app/sitemap.xml

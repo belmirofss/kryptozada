@@ -2,6 +2,7 @@
 	import orderBy from 'lodash/orderBy.js';
 	import { searchText } from '$lib/store';
 	import {
+		coinPath,
 		formatCompactCurrency,
 		formatNumber,
 		formatPercent,
@@ -170,7 +171,7 @@
 			{#each rows as ticker (ticker.id)}
 				<li class="border-b-2 border-ink">
 					<a
-						href="/criptocurrency/{ticker.id}"
+						href={coinPath(ticker)}
 						class="flex h-[72px] items-center gap-3 px-3.5 text-[17px] transition hover:bg-[#FFF4E0] focus-visible:bg-[#FFF4E0] focus-visible:outline-none lg:h-[66px] lg:px-5 {COLUMNS}"
 					>
 						<span class="w-8 shrink-0 font-mono text-[13px] text-muted lg:w-auto lg:text-[17px]"

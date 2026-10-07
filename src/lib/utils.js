@@ -1,5 +1,8 @@
 const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
+/** Readable coin page URL, e.g. /cryptocurrency/bitcoin. */
+export const coinPath = (ticker) => `/cryptocurrency/${encodeURIComponent(ticker.nameid)}`;
+
 export const formatCurrency = (value) => usd.format(value);
 
 /** Prices: keep cents for normal values, significant digits for tiny ones ($0.00001234). */

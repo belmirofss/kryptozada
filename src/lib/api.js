@@ -1,4 +1,5 @@
 import axios from 'axios';
+import pick from 'lodash/pick.js';
 import { api_url } from './constants';
 
 const api = axios.create({
@@ -6,7 +7,22 @@ const api = axios.create({
 });
 
 const PAGE_SIZE = 100;
-const MAIN_TICKERS_COUNT = 1000;
+export const MAIN_TICKERS_COUNT = 1000;
+
+// The home page ships all 1,000 tickers in its HTML, so keep only the fields the lists use.
+const LIST_FIELDS = [
+	'id',
+	'symbol',
+	'name',
+	'nameid',
+	'rank',
+	'price_usd',
+	'percent_change_1h',
+	'percent_change_24h',
+	'percent_change_7d',
+	'market_cap_usd',
+	'volume24'
+];
 
 export const loadGlobalCryptoData = () => api.get('global/');
 
@@ -23,7 +39,7 @@ export const loadMainTickers = async () => {
 		Array.from({ length: MAIN_TICKERS_COUNT / PAGE_SIZE }, (_, i) => loadTickers(i * PAGE_SIZE))
 	);
 
-	return pages.flatMap((response) => response.data.data);
+	return pages.flatMap((response) => response.data.data).map((ticker) => pick(ticker, LIST_FIELDS));
 };
 
 export const loadTickerById = (id) =>

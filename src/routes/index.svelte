@@ -1,9 +1,11 @@
 <script>
 	import DominanceCard from '$lib/components/dominance-card.svelte';
 	import ListTickers from '$lib/components/list-tickers.svelte';
+	import Seo from '$lib/components/seo.svelte';
 	import TickerTape from '$lib/components/ticker-tape.svelte';
 	import TopCard from '$lib/components/top-card.svelte';
-	import { formatCompactCurrency, formatNumber, trend } from '$lib/utils';
+	import { site_name, site_url } from '$lib/constants';
+	import { describeChange, formatCompactCurrency, formatNumber, trend } from '$lib/utils';
 
 	export let globalData;
 	export let mainTickers;
@@ -13,9 +15,24 @@
 	$: marketTrend = trend(change);
 </script>
 
-<svelte:head>
-	<title>Kryptozada | The crypto market, in plain sight</title>
-</svelte:head>
+<Seo
+	title="Crypto prices today: top {formatNumber(
+		mainTickers.length
+	)} coins by market cap | Kryptozada"
+	description="Live prices, market caps and 24h moves for the top {formatNumber(
+		mainTickers.length
+	)} cryptocurrencies. The crypto market is worth {formatCompactCurrency(
+		globalData.total_mcap
+	)} today, {describeChange(globalData.mcap_change)} in 24 hours."
+	jsonLd={[
+		{
+			'@context': 'https://schema.org',
+			'@type': 'WebSite',
+			name: site_name,
+			url: `${site_url}/`
+		}
+	]}
+/>
 
 <TickerTape tickers={top10Tickers} />
 

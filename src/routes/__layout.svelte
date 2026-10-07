@@ -4,8 +4,18 @@
 	import Footer from '$lib/components/footer.svelte';
 	import Header from '$lib/components/header.svelte';
 	import SplashScreen from '$lib/components/splash-screen.svelte';
+	import bricolage from '$lib/fonts/bricolage-grotesque-latin-opsz-normal.woff2';
+	import dmMono400 from '$lib/fonts/dm-mono-latin-400-normal.woff2';
+	import dmMono500 from '$lib/fonts/dm-mono-latin-500-normal.woff2';
 	import '../app.css';
 </script>
+
+<svelte:head>
+	<!-- Start the font downloads with the HTML instead of waiting for the CSS. -->
+	{#each [bricolage, dmMono400, dmMono500] as font}
+		<link rel="preload" href={font} as="font" type="font/woff2" crossorigin="anonymous" />
+	{/each}
+</svelte:head>
 
 {#if $navigating}
 	<SplashScreen />
