@@ -1,5 +1,5 @@
 <script>
-	import { formatPercent, formatPrice, trend, trendArrow } from '$lib/utils';
+	import { coinPath, formatPercent, formatPrice, trend, trendArrow } from '$lib/utils';
 
 	export let tickers = [];
 
@@ -17,7 +17,7 @@
 					<li class="flex items-center gap-2.5 whitespace-nowrap">
 						<a
 							class="font-medium text-primary hover:underline"
-							href="/criptocurrency/{ticker.id}"
+							href={coinPath(ticker)}
 							tabindex={copy === 1 ? -1 : 0}>{ticker.symbol}</a
 						>
 						<span class="hidden sm:inline">{formatPrice(ticker.price_usd)}</span>

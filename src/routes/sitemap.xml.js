@@ -1,5 +1,6 @@
 import { loadMainTickers } from '$lib/api';
 import { site_url } from '$lib/constants';
+import { coinPath } from '$lib/utils';
 
 const url = (path, priority) =>
 	`<url><loc>${site_url}${path}</loc><changefreq>hourly</changefreq><priority>${priority}</priority></url>`;
@@ -7,10 +8,7 @@ const url = (path, priority) =>
 export async function get() {
 	try {
 		const tickers = await loadMainTickers();
-		const urls = [
-			url('/', '1.0'),
-			...tickers.map((ticker) => url(`/criptocurrency/${ticker.id}`, '0.8'))
-		];
+		const urls = [url('/', '1.0'), ...tickers.map((ticker) => url(coinPath(ticker), '0.8'))];
 
 		return {
 			headers: {

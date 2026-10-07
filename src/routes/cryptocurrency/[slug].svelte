@@ -4,6 +4,7 @@
 	import Seo from '$lib/components/seo.svelte';
 	import { site_url } from '$lib/constants';
 	import {
+		coinPath,
 		describeChange,
 		formatCompactCurrency,
 		formatCompactNumber,
@@ -68,7 +69,7 @@
 				'@type': 'ListItem',
 				position: 2,
 				name: ticker.name,
-				item: `${site_url}/criptocurrency/${ticker.id}`
+				item: `${site_url}${coinPath(ticker)}`
 			}
 		]
 	};
@@ -269,7 +270,7 @@
 		>
 			{#if neighbours.previous}
 				<a
-					href="/criptocurrency/{neighbours.previous.id}"
+					href={coinPath(neighbours.previous)}
 					class="flex min-w-0 flex-col gap-0.5 border-[3px] border-ink p-3.5 shadow-brutal-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal lg:flex-row lg:items-center lg:gap-5 lg:px-7 lg:py-6 lg:shadow-[8px_8px_0_#111111]"
 				>
 					<span class="hidden text-[40px] font-extrabold lg:inline" aria-hidden="true">←</span>
@@ -288,7 +289,7 @@
 			{/if}
 			{#if neighbours.next}
 				<a
-					href="/criptocurrency/{neighbours.next.id}"
+					href={coinPath(neighbours.next)}
 					class="flex min-w-0 flex-col items-end gap-0.5 border-[3px] border-ink bg-primary p-3.5 shadow-brutal-sm transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal lg:flex-row lg:items-center lg:gap-5 lg:px-7 lg:py-6 lg:shadow-[8px_8px_0_#111111]"
 				>
 					<span class="hidden font-mono text-xl lg:inline"

@@ -1,5 +1,5 @@
 <script>
-	import { formatPrice } from '$lib/utils';
+	import { coinPath, formatPrice } from '$lib/utils';
 	import ChangePill from './change-pill.svelte';
 	import CoinIcon from './coin-icon.svelte';
 	import MomentumBars from './momentum-bars.svelte';
@@ -9,7 +9,7 @@
 </script>
 
 <a
-	href="/criptocurrency/{ticker.id}"
+	href={coinPath(ticker)}
 	class="flex h-full flex-col gap-3 border-[3px] border-ink p-4 shadow-brutal transition duration-150 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[9px_9px_0_#111111] focus-visible:-translate-x-[3px] focus-visible:-translate-y-[3px] focus-visible:outline-none lg:gap-3.5 lg:p-5"
 	class:bg-primary={position === 1}
 	class:bg-white={position !== 1}

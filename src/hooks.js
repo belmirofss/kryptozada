@@ -6,7 +6,7 @@ export async function handle({ event, resolve }) {
 	// (and a stale copy while it refreshes) instead of calling CoinLore on every hit.
 	if (
 		event.request.method === 'GET' &&
-		response.status === 200 &&
+		(response.status === 200 || response.status === 301) &&
 		!response.headers.has('cache-control')
 	) {
 		response.headers.set(

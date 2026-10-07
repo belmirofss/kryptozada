@@ -7,7 +7,7 @@ const api = axios.create({
 });
 
 const PAGE_SIZE = 100;
-const MAIN_TICKERS_COUNT = 1000;
+export const MAIN_TICKERS_COUNT = 1000;
 
 // The home page ships all 1,000 tickers in its HTML, so keep only the fields the lists use.
 const LIST_FIELDS = [
