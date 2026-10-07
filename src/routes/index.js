@@ -1,24 +1,21 @@
-import { loadGlobalCryptoData, loadMainTickers, loadTop10Tickers } from '$lib/api';
+import { loadGlobalCryptoData, loadMainTickers } from '$lib/api';
 
 export async function get() {
-    try {
-        const [globalDataResponse, top10TickersResponse, mainTickers] = await Promise.all([
-            loadGlobalCryptoData(),
-            loadTop10Tickers(),
-            loadMainTickers()
-        ]);
+	try {
+		const [globalDataResponse, mainTickers] = await Promise.all([
+			loadGlobalCryptoData(),
+			loadMainTickers()
+		]);
 
-        return {
-            body: {
-                globalData: globalDataResponse.data[0],
-                top10Tickers: top10TickersResponse.data.data,
-                mainTickers
-            }
-        }
-    } catch  {
-        return {
-            status: 500
-        }
-    }
-
-};
+		return {
+			body: {
+				globalData: globalDataResponse.data[0],
+				mainTickers
+			}
+		};
+	} catch {
+		return {
+			status: 500
+		};
+	}
+}

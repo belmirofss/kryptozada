@@ -1,3 +1,4 @@
 import { writable } from 'svelte/store';
 
-export const splashScreenIsActive = writable(true);
+/** Text typed in the header search; the market list filters by it. */
+export const searchText = writable('');
