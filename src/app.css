@@ -2,16 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-white font-sans text-ink antialiased;
+	}
+
+	::selection {
+		@apply bg-primary text-ink;
+	}
+}
+
+@layer components {
+	/* Highlighter-pen emphasis used in sentences across the app */
+	.mark {
+		@apply bg-primary px-[0.12em];
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+	}
+
+	.mark-down {
+		@apply bg-down-soft px-[0.12em];
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+	}
+
+	.brutal-input {
+		@apply h-12 w-full border-[3px] border-ink bg-white px-4 text-base outline-none transition placeholder:text-muted focus:shadow-brutal-primary;
+	}
+
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.no-scrollbar {
+		scrollbar-width: none;
+	}
+}
+
 ::-webkit-scrollbar-track {
-	background-color: whitesmoke;
+	background-color: #f4f2ec;
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
-    height: 10px;
-	background-color: whitesmoke;
+	width: 12px;
+	height: 12px;
+	background-color: #f4f2ec;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #FFBD59;	
+	background-color: #111111;
+	border: 3px solid #f4f2ec;
 }
