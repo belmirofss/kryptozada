@@ -1,6 +1,8 @@
 <script>
 	import ChangePill from '$lib/components/change-pill.svelte';
 	import CoinIcon from '$lib/components/coin-icon.svelte';
+	import Seo from '$lib/components/seo.svelte';
+	import { site_url } from '$lib/constants';
 	import {
 		describeChange,
 		formatCompactCurrency,
@@ -50,6 +52,27 @@
 		}
 	];
 
+	$: seoDescription =
+		`${ticker.name} (${ticker.symbol}) is trading at ${formatPrice(ticker.price_usd)}, ` +
+		`${describeChange(ticker.percent_change_24h)} in the last 24 hours. ` +
+		`Ranked #${ticker.rank} by market cap (${formatCompactCurrency(ticker.market_cap_usd)}), ` +
+		`with ${formatCompactCurrency(ticker.volume24)} traded today. ` +
+		`See its supply, momentum and the exchanges where ${ticker.symbol} trades.`;
+
+	$: breadcrumbs = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Markets', item: `${site_url}/` },
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: ticker.name,
+				item: `${site_url}/criptocurrency/${ticker.id}`
+			}
+		]
+	};
+
 	$: volumeRatio = +ticker.market_cap_usd ? (+ticker.volume24 / +ticker.market_cap_usd) * 100 : 0;
 	$: stats = [
 		{ label: 'Market cap', value: formatCompactCurrency(ticker.market_cap_usd), highlight: true },
@@ -67,9 +90,11 @@
 	];
 </script>
 
-<svelte:head>
-	<title>Kryptozada | {ticker.name} ({ticker.symbol})</title>
-</svelte:head>
+<Seo
+	title="{ticker.name} ({ticker.symbol}) price today, market cap and stats | Kryptozada"
+	description={seoDescription}
+	jsonLd={[breadcrumbs]}
+/>
 
 <div class="border-b-[3px] border-ink">
 	<nav

@@ -6,14 +6,20 @@
 </script>
 
 <script>
+	import Seo from '$lib/components/seo.svelte';
+
 	export let status;
 
 	$: notFound = status === 404;
 </script>
 
-<svelte:head>
-	<title>Kryptozada | {notFound ? 'Coin not found' : 'Something went wrong'}</title>
-</svelte:head>
+<Seo
+	title="Kryptozada | {notFound ? 'Coin not found' : 'Something went wrong'}"
+	description={notFound
+		? 'This coin may have been delisted, or the link is wrong.'
+		: 'Kryptozada cannot reach the market data right now. Try again in a moment.'}
+	noindex
+/>
 
 <section class="flex flex-1 items-center bg-paper">
 	<div class="mx-auto w-full max-w-[1440px] px-4 py-14 sm:px-8 lg:px-14 lg:py-24">
